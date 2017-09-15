@@ -1,11 +1,19 @@
-OnInit {
-dpFirstName: string;
-dpLastName: string;
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from './common.service';
 
-constructor(private common: CommonService){}
+@Component({
+  selector: 'app-display',
+  templateUrl: './display.component.html',
+  styleUrls: ['./display.component.css']
+})
+export class DisplayComponent implements OnInit {
+  studColl: Array<object>;
 
-ngOnInit(){
-   this.dpNameCollection = this.common.getNames();
-    this.dpLastName = this.common.cmLastName;
-}
+  constructor(private dataStore: SharedService) { }
+
+  ngOnInit() {
+    
+    this.studColl = this.dataStore.getStudent();
+  }
+
 }
